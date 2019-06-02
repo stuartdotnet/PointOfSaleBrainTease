@@ -5,54 +5,40 @@ namespace PoS
 {
 	public class PointOfSaleTerminal
 	{
-		private List<Product> _products;
+		private Sale _sale;
+		private List<ProductType> _productTypes;
 
 		public PointOfSaleTerminal()
 		{
-			_products = new List<Product>();
+			SetupPricing();
+			_sale = new Sale();
+		}
+
+		private void SetupPricing()
+		{
+			_productTypes = new List<ProductType>();
+			_productTypes.Add(new ProductType { ProductCode = "A", PriceEach = 1.25m, Deal = new Deal { DealQuantity = 3, DealCost = 3m } });
+			_productTypes.Add(new ProductType { ProductCode = "B", PriceEach = 4.25m });
+			_productTypes.Add(new ProductType { ProductCode = "C", PriceEach = 1.00m, Deal = new Deal { DealQuantity = 6, DealCost = 5m } });
+			_productTypes.Add(new ProductType { ProductCode = "D", PriceEach = 0.75m });
 		}
 
 		public void Scan(string productCode)
 		{
-			_products.Add(new Product(productCode));
-		}
-
-		public decimal ProductTotal(string productCode)
-		{
-			var products = _products.Where(p => p.ProductType.ProductCode == productCode);
-			bool isProductDeal = products.Any(p => p.ProductType.HasDeal);
-			
-			if (isProductDeal)
+			var productType = _productTypes.SingleOrDefault(p => p.ProductCode == productCode);
+			if (productType != null)
 			{
-				int dealQuantityForProductType = products.Select(p => p.ProductType.Deal.DealQuantity).First();
-
-				// first calculate cost of items that didn't make the deal
-				int productsNotInDeal = products.Count() % dealQuantityForProductType;
-				decimal total = productsNotInDeal * products.Select(p => p.ProductType.PriceEach).First();
-
-				// Then add the deal totals
-				int productsWithDealCount = products.Count() - productsNotInDeal;
-				decimal dealsCount = productsWithDealCount / products.Select(p => p.ProductType.Deal.DealQuantity).First();
-				decimal dealCost = products.Select(p => p.ProductType.Deal.DealCost).First();
-
-				total += dealCost * dealsCount;
-				return total;
+				_sale.Products.Add(new Product(productType));
 			}
 			else
 			{
-				return products.Sum(p => p.ProductType.PriceEach);
+				throw new System.Exception("Product Code not on this");
 			}
 		}
 
-		public decimal GetGrandTotal()
+		public decimal GetSaleTotal()
 		{
-			decimal total = 0;
-			foreach (var productCode in _products.Select(p => p.ProductType.ProductCode).Distinct())
-			{
-				total += ProductTotal(productCode);
-			}
-
-			return total;
+			return _sale.GetTotal();
 		}
 	}
 }

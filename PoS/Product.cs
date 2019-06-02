@@ -1,6 +1,4 @@
-﻿using System;
-using System.Diagnostics;
-using System.Linq;
+﻿using System.Diagnostics;
 
 namespace PoS
 {
@@ -8,10 +6,9 @@ namespace PoS
 	[DebuggerDisplay("{ProductType.ProductCode}")]
 	public class Product 
 	{
-		public Product(string productCode)
+		public Product(ProductType productType)
 		{
-			var productType = DataSource.ProductTypes.SingleOrDefault(p => p.ProductCode == productCode);
-			this.ProductType = productType ?? throw new Exception("Product Code not found");
+			this.ProductType = productType;
 		}
 
 		public ProductType ProductType { get; }

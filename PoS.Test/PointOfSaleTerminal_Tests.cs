@@ -18,7 +18,7 @@ namespace PoS.Test
 			terminal.Scan("A");
 
 			// Act
-			decimal result = terminal.GetGrandTotal();
+			decimal result = terminal.GetSaleTotal();
 
 			// Assert
 			Assert.Equal(13.25m, result);
@@ -38,7 +38,7 @@ namespace PoS.Test
 			terminal.Scan("C");
 
 			// Act
-			decimal result = terminal.GetGrandTotal();
+			decimal result = terminal.GetSaleTotal();
 
 			// Assert
 			Assert.Equal(6m, result);
@@ -55,7 +55,7 @@ namespace PoS.Test
 			terminal.Scan("D");
 
 			// Act
-			decimal result = terminal.GetGrandTotal();
+			decimal result = terminal.GetSaleTotal();
 
 			// Assert
 			Assert.Equal(7.25m, result);
@@ -66,7 +66,7 @@ namespace PoS.Test
 		{
 			PointOfSaleTerminal terminal = new PointOfSaleTerminal();
 
-			decimal result = terminal.GetGrandTotal();
+			decimal result = terminal.GetSaleTotal();
 
 			Assert.Equal(0, result);
 		}
