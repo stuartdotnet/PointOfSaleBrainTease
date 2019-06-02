@@ -1,0 +1,11 @@
+C:\workspace\PoS\PoS\obj\Debug\netcoreapp2.2\PoS.csprojAssemblyReference.cache
+C:\workspace\PoS\PoS\obj\Debug\netcoreapp2.2\PoS.csproj.CoreCompileInputs.cache
+C:\workspace\PoS\PoS\obj\Debug\netcoreapp2.2\PoS.AssemblyInfoInputs.cache
+C:\workspace\PoS\PoS\obj\Debug\netcoreapp2.2\PoS.AssemblyInfo.cs
+C:\workspace\PoS\PoS\bin\Debug\netcoreapp2.2\PoS.deps.json
+C:\workspace\PoS\PoS\bin\Debug\netcoreapp2.2\PoS.runtimeconfig.json
+C:\workspace\PoS\PoS\bin\Debug\netcoreapp2.2\PoS.runtimeconfig.dev.json
+C:\workspace\PoS\PoS\bin\Debug\netcoreapp2.2\PoS.dll
+C:\workspace\PoS\PoS\bin\Debug\netcoreapp2.2\PoS.pdb
+C:\workspace\PoS\PoS\obj\Debug\netcoreapp2.2\PoS.dll
+C:\workspace\PoS\PoS\obj\Debug\netcoreapp2.2\PoS.pdb
