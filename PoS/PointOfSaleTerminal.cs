@@ -31,7 +31,11 @@ namespace PoS
 				decimal total = productsNotInDeal * products.Select(p => p.ProductType.PriceEach).First();
 
 				// Then add the deal totals
-				total += products.Select(p => p.ProductType.Deal.DealCost).First() * ((products.Count() - productsNotInDeal) / products.Select(p=>p.ProductType.Deal.DealQuantity).First());
+				int productsWithDealCount = products.Count() - productsNotInDeal;
+				decimal dealsCount = productsWithDealCount / products.Select(p => p.ProductType.Deal.DealQuantity).First();
+				decimal dealCost = products.Select(p => p.ProductType.Deal.DealCost).First();
+
+				total += dealCost * dealsCount;
 				return total;
 			}
 			else
