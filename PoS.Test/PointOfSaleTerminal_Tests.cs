@@ -1,4 +1,3 @@
-using System;
 using Xunit;
 
 namespace PoS.Test
@@ -60,6 +59,16 @@ namespace PoS.Test
 
 			// Assert
 			Assert.Equal(7.25m, result);
+		}
+
+		[Fact]
+		public void Scan_WhenNothingScanned_ThenPriceIs0WithNoErrors()
+		{
+			PointOfSaleTerminal terminal = new PointOfSaleTerminal();
+
+			decimal result = terminal.GetGrandTotal();
+
+			Assert.Equal(0, result);
 		}
 	}
 }
