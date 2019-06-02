@@ -27,13 +27,17 @@ namespace PoS
 		private decimal ProductTotal(string productCode)
 		{
 			var products = this.Products.Where(p => p.ProductType.ProductCode == productCode);
-			bool isProductDeal = products.Any(p => p.ProductType.HasDeal);
 
+			if (!products.Any()) return 0;
+
+			// all products have the same product type so grab the first
+			var productType = products.Select(p => p.ProductType).First();
+			
 			IPricingStrategy pricingStrategy;
 
-			if (isProductDeal)
+			if (productType.HasDeal)
 			{
-				pricingStrategy = new DealPricingStrategy(products.Select(p => p.ProductType.Deal).First());
+				pricingStrategy = new DealPricingStrategy(productType.Deal);
 			}
 			else
 			{

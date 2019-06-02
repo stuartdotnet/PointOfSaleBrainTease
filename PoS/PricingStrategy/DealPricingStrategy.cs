@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace PoS.PricingStrategy
@@ -16,11 +15,11 @@ namespace PoS.PricingStrategy
 		public decimal GetTotal(IEnumerable<Product> productCollection)
 		{
 			// first calculate cost of items that didn't make the deal
-			int productsNotInDeal = productCollection.Count() % _deal.DealQuantity;
-			decimal total = productsNotInDeal * productCollection.Select(p => p.ProductType.PriceEach).First();
+			int productsNotInDealCount = productCollection.Count() % _deal.DealQuantity;
+			decimal total = productsNotInDealCount * productCollection.Select(p => p.ProductType.PriceEach).First();
 
 			// Then add the deal totals
-			int productsWithDealCount = productCollection.Count() - productsNotInDeal;
+			int productsWithDealCount = productCollection.Count() - productsNotInDealCount;
 			decimal dealsCount = productsWithDealCount / _deal.DealQuantity;
 
 			total += _deal.DealCost * dealsCount;
