@@ -9,6 +9,8 @@ namespace PoS.Test
 		{
 			// Arrange
 			PointOfSaleTerminal terminal = new PointOfSaleTerminal();
+			terminal.SetPricing();
+
 			terminal.Scan("A");
 			terminal.Scan("B");
 			terminal.Scan("C");
@@ -29,6 +31,7 @@ namespace PoS.Test
 		{
 			// Arrange
 			PointOfSaleTerminal terminal = new PointOfSaleTerminal();
+			terminal.SetPricing();
 			terminal.Scan("C");
 			terminal.Scan("C");
 			terminal.Scan("C");
@@ -49,6 +52,7 @@ namespace PoS.Test
 		{
 			// Arrange
 			PointOfSaleTerminal terminal = new PointOfSaleTerminal();
+			terminal.SetPricing();
 			terminal.Scan("A");
 			terminal.Scan("B");
 			terminal.Scan("C");
@@ -65,6 +69,7 @@ namespace PoS.Test
 		public void Scan_WhenNothingScanned_ThenPriceIs0WithNoErrors()
 		{
 			PointOfSaleTerminal terminal = new PointOfSaleTerminal();
+			terminal.SetPricing();
 
 			decimal result = terminal.GetSaleTotal();
 

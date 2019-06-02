@@ -10,11 +10,10 @@ namespace PoS
 
 		public PointOfSaleTerminal()
 		{
-			SetupPricing();
 			_sale = new Sale();
 		}
 
-		private void SetupPricing()
+		public void SetPricing()
 		{
 			_productTypes = new List<ProductType>();
 			_productTypes.Add(new ProductType { ProductCode = "A", PriceEach = 1.25m, Deal = new Deal { DealQuantity = 3, DealCost = 3m } });
